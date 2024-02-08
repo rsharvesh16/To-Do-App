@@ -1,8 +1,9 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import ToDoList, ToDoItem
+from django.urls import reverse, reverse_lazy
 
 class ListListView(ListView):
     model = ToDoList
@@ -63,3 +64,19 @@ class ItemUpdate(UpdateView):
      
     def get_success_url(self):
         return reverse("list", args=[self.object.todo_list_id])
+    
+class ListDelete(DeleteView):
+    model = ToDoList
+    success_url = reverse_lazy("index")
+
+class ItemDelete(DeleteView):
+    model = ToDoItem
+    
+    def get_success_url(self):
+        return reverse_lazy("list", args=[self.kwargs["list_id"]])
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["todo_list"] = self.object.todo_list
+        return context
+
