@@ -1,17 +1,20 @@
-{ % extends "base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
 
-<h3>
-    {{title}}
-</h3>
+<h3>{{ title }}</h3>
 <div>
     <div>
-        <form method="post"">
+        <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <input value="Save" type="Submit">
-            <input value="Cancel", type="button", onclick="location.href'{% url "index" %}';">
+            <input
+                value="Save"
+                type="submit">
+            <input
+                value="Cancel"
+                type="button"
+                onclick="location.href='{% url "index" %}';">
         </form>
     </div>
 </div>

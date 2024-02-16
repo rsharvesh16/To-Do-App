@@ -39,7 +39,7 @@ class ItemCreate(CreateView):
         "due_date",
     ]
     def get_initial(self):
-        context = super(ItemCreate, self).get_intital()
+        initial_data = super(ItemCreate, self).get_intital()
         todo_list = ToDoList.objects.get(id = self.kwargs["list_id"])
         context["todo_list"] = todo_list
         context["title"] = title

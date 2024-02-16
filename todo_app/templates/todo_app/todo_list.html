@@ -14,9 +14,10 @@
                 <div>
                     <div
                         role="button"
-                        onclick="location.href='{% url "item-update" todo_list.id todo.id %}'">
+                        onclick="location.href=
+                        '{% url "item-update" todo_list.id todo.id %}'">
                         {{ todo.title }}
-                        (Due {{ todo.due_date | date:"l, F j" }})
+                        (Due {{ todo.due_date | date:"l, F j"}})
                     </div>
                 </div>
             </li>
